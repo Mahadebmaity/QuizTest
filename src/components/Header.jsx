@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookmarkCheck, Flame, Trophy, Moon, Sun, Volume2, VolumeX, PlusCircle } from 'lucide-react';
+import { BookmarkCheck, Flame, Trophy, Moon, Sun, Volume2, VolumeX } from 'lucide-react';
 import IqLogo from './IqLogo';
 import LeaderboardModal from './LeaderboardModal';
 import { sfx } from '../utils/audioSfx';
@@ -28,14 +28,15 @@ export default function Header({ activeTab, setActiveTab, savedCount = 0 }) {
       <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 px-3 sm:px-8 py-3 transition-all">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           
-          {/* Brand Logo - Clicking takes to Quiz Builder */}
+          {/* Brand Logo with modern IqLogo emblem & gradient text */}
           <div 
             onClick={() => setActiveTab('builder')}
-            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group shrink-0"
+            className="flex items-center gap-2.5 cursor-pointer group shrink-0"
           >
             <IqLogo size="md" />
-            <span className="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors font-['Plus_Jakarta_Sans',sans-serif]">
-              IQ Test
+            <span className="text-lg sm:text-xl font-extrabold tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">IQ</span>
+              <span className="text-slate-900 dark:text-white ml-1">Test</span>
             </span>
           </div>
 
