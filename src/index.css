@@ -15,41 +15,110 @@
   }
 }
 
-/* Dark Mode Global Styles */
+/* ===================================================
+   ELEGANT DARK THEME OVERRIDES
+   =================================================== */
 .dark body {
   background-color: #0b0f19 !important;
   color: #f1f5f9 !important;
 }
 
+/* Dark Mode Card Backgrounds & Borders */
 .dark .bg-white {
-  background-color: #151c2c !important;
+  background-color: #131b2e !important;
   color: #f8fafc !important;
-  border-color: #242f47 !important;
+  border-color: #202b42 !important;
 }
 
+/* Dark Mode Input Fields & Sub-cards */
 .dark .bg-slate-50 {
-  background-color: #1a2336 !important;
+  background-color: #1a243a !important;
   color: #f1f5f9 !important;
-  border-color: #2e3c5a !important;
+  border-color: #2a3754 !important;
 }
 
+/* Dark Mode Inputs Text & Placeholders */
+.dark input[type="text"],
+.dark textarea {
+  background-color: #1a243a !important;
+  color: #f8fafc !important;
+  border-color: #2a3754 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark input:focus,
+.dark textarea:focus {
+  border-color: #818cf8 !important;
+  background-color: #1e2a45 !important;
+}
+
+/* Dark Mode Headings & Labels */
 .dark .text-slate-900,
-.dark .text-slate-800 {
+.dark .text-slate-800,
+.dark .text-slate-700 {
   color: #f8fafc !important;
 }
 
 .dark .text-slate-600,
-.dark .text-slate-500 {
+.dark .text-slate-500,
+.dark .text-slate-400 {
   color: #94a3b8 !important;
 }
 
+/* Dark Mode Borders */
 .dark .border-slate-100,
-.dark .border-slate-200 {
-  border-color: #242f47 !important;
+.dark .border-slate-200,
+.dark .border-indigo-100 {
+  border-color: #202b42 !important;
 }
 
-.dark .border-indigo-100 {
-  border-color: #312e81 !important;
+/* Dark Mode Badges & Special Callouts */
+.dark .bg-purple-100\/70,
+.dark .bg-purple-100,
+.dark .bg-purple-50 {
+  background-color: #2e1065 !important;
+  color: #d8b4fe !important;
+  border-color: #581c87 !important;
+}
+
+.dark .text-purple-600,
+.dark .text-purple-700 {
+  color: #c084fc !important;
+}
+
+.dark .bg-indigo-50 {
+  background-color: #1e1b4b !important;
+  color: #a5b4fc !important;
+}
+
+.dark .text-indigo-600,
+.dark .text-indigo-700 {
+  color: #818cf8 !important;
+}
+
+/* Dark Mode Tip Box (Yellow Callout) */
+.dark .bg-amber-50\/90,
+.dark .bg-amber-50 {
+  background-color: #2e2305 !important;
+  color: #fef08a !important;
+  border-color: #713f12 !important;
+}
+
+.dark .text-amber-900,
+.dark .text-amber-950,
+.dark .text-amber-800 {
+  color: #fef08a !important;
+}
+
+/* Dark Mode Modals & Dropdowns */
+.dark .bg-white\/90,
+.dark .bg-white\/95 {
+  background-color: rgba(19, 27, 46, 0.95) !important;
+  border-color: #202b42 !important;
 }
 
 /* Custom scrollbars */
@@ -61,7 +130,7 @@
   background: #f1f5f9;
 }
 .dark ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #0b0f19;
 }
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
@@ -74,13 +143,13 @@
   background: #94a3b8;
 }
 
-/* Glass & Card Effects */
+/* Glass & Card Shadow Effects */
 .card-shadow {
   box-shadow: 0 4px 20px -2px rgba(124, 58, 237, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.04);
 }
 
 .dark .card-shadow {
-  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.5), 0 4px 15px -2px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 10px 40px -6px rgba(0, 0, 0, 0.6), 0 4px 15px -2px rgba(129, 140, 248, 0.12);
 }
 
 .button-glow {
