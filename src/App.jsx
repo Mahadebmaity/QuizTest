@@ -66,7 +66,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-['Inter',sans-serif] antialiased">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#080c16] text-slate-800 dark:text-slate-100 flex flex-col font-['Inter',sans-serif] antialiased transition-colors duration-300">
       {/* Navigation Header */}
       <Header 
         activeTab={activeTab} 
