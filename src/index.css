@@ -1,15 +1,55 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
     background-color: #f8fafc;
     color: #1e293b;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   .font-serif-heading {
     font-family: 'DM Serif Display', Georgia, serif;
   }
+}
+
+/* Dark Mode Global Styles */
+.dark body {
+  background-color: #0b0f19 !important;
+  color: #f1f5f9 !important;
+}
+
+.dark .bg-white {
+  background-color: #151c2c !important;
+  color: #f8fafc !important;
+  border-color: #242f47 !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: #1a2336 !important;
+  color: #f1f5f9 !important;
+  border-color: #2e3c5a !important;
+}
+
+.dark .text-slate-900,
+.dark .text-slate-800 {
+  color: #f8fafc !important;
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .border-slate-100,
+.dark .border-slate-200 {
+  border-color: #242f47 !important;
+}
+
+.dark .border-indigo-100 {
+  border-color: #312e81 !important;
 }
 
 /* Custom scrollbars */
@@ -20,9 +60,15 @@
 ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
@@ -31,6 +77,10 @@
 /* Glass & Card Effects */
 .card-shadow {
   box-shadow: 0 4px 20px -2px rgba(124, 58, 237, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+}
+
+.dark .card-shadow {
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.5), 0 4px 15px -2px rgba(99, 102, 241, 0.15);
 }
 
 .button-glow {
