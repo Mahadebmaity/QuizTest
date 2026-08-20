@@ -23,6 +23,15 @@
   color: #f1f5f9 !important;
 }
 
+/* Dark Mode Headings & Titles High Contrast */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark .font-serif-heading {
+  color: #ffffff !important;
+}
+
 /* Dark Mode Card Backgrounds & Borders */
 .dark .bg-white {
   background-color: #131b2e !important;
@@ -56,7 +65,7 @@
   background-color: #1e2a45 !important;
 }
 
-/* Dark Mode Headings & Labels */
+/* Dark Mode Text Contrast Overrides */
 .dark .text-slate-900,
 .dark .text-slate-800,
 .dark .text-slate-700 {
@@ -66,7 +75,7 @@
 .dark .text-slate-600,
 .dark .text-slate-500,
 .dark .text-slate-400 {
-  color: #94a3b8 !important;
+  color: #cbd5e1 !important;
 }
 
 /* Dark Mode Borders */

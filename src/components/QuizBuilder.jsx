@@ -138,15 +138,15 @@ export default function QuizBuilder({ onQuizCreated }) {
           {/* Header section matching screenshot + AI Wizard button */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2 sm:space-y-3">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-extrabold tracking-wider text-purple-600 bg-purple-100/70 uppercase">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-extrabold tracking-wider text-purple-600 dark:text-purple-300 bg-purple-100/70 dark:bg-purple-950/80 uppercase">
                 MAKE SOMETHING FUN
               </span>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-serif-heading tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-serif-heading tracking-tight leading-tight">
                 Build your quiz
               </h1>
 
-              <p className="text-slate-500 text-sm sm:text-lg font-normal">
+              <p className="text-slate-500 dark:text-slate-300 text-sm sm:text-lg font-normal">
                 Add your questions and choose each right answer.
               </p>
             </div>
@@ -163,11 +163,11 @@ export default function QuizBuilder({ onQuizCreated }) {
           </div>
 
           {/* Top Quiz Meta Card matching screenshot */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-100 card-shadow space-y-4 sm:space-y-6">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-100 dark:border-slate-800 card-shadow space-y-4 sm:space-y-6">
             
             {/* Quiz title input */}
             <div className="space-y-1.5 sm:space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-slate-800">
+              <label className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100">
                 Quiz title
               </label>
               <input
@@ -175,27 +175,27 @@ export default function QuizBuilder({ onQuizCreated }) {
                 value={quizTitle}
                 onChange={(e) => setQuizTitle(e.target.value)}
                 placeholder="e.g. Friday night trivia"
-                className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm sm:text-base font-medium"
+                className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm sm:text-base font-medium"
               />
             </div>
 
             {/* A little intro (optional) */}
             <div className="space-y-1.5 sm:space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-slate-800">
-                A little intro <span className="text-slate-400 font-normal">(optional)</span>
+              <label className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100">
+                A little intro <span className="text-slate-400 dark:text-slate-500 font-normal">(optional)</span>
               </label>
               <textarea
                 rows={3}
                 value={quizIntro}
                 onChange={(e) => setQuizIntro(e.target.value)}
                 placeholder="What should your friends know before they start?"
-                className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-xs sm:text-sm font-medium resize-none"
+                className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-xs sm:text-sm font-medium resize-none"
               />
             </div>
 
             {/* Quiz Type Selector */}
-            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs font-medium text-slate-600">
-              <span className="font-semibold text-slate-800 shrink-0">Scoring Mode:</span>
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs font-medium text-slate-600 dark:text-slate-300">
+              <span className="font-semibold text-slate-800 dark:text-slate-100 shrink-0">Scoring Mode:</span>
               <div className="flex flex-wrap items-center gap-3">
                 <label className="flex items-center gap-1.5 cursor-pointer">
                   <input
@@ -225,11 +225,11 @@ export default function QuizBuilder({ onQuizCreated }) {
 
           {/* Validation Banner if any error */}
           {validationError && (
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs sm:text-sm font-medium flex items-center justify-between animate-shake">
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300 text-xs sm:text-sm font-medium flex items-center justify-between animate-shake">
               <span>⚠️ {validationError}</span>
               <button 
                 onClick={() => setValidationError('')}
-                className="text-xs font-bold text-rose-500 hover:text-rose-800 shrink-0 ml-2"
+                className="text-xs font-bold text-rose-500 dark:text-rose-400 hover:text-rose-800 shrink-0 ml-2"
               >
                 Dismiss
               </button>
@@ -255,15 +255,15 @@ export default function QuizBuilder({ onQuizCreated }) {
           <button
             type="button"
             onClick={handleAddQuestion}
-            className="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-2xl border-2 border-dashed border-indigo-200 hover:border-indigo-400 bg-indigo-50/30 hover:bg-indigo-50/80 text-indigo-600 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 group"
+            className="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-2xl border-2 border-dashed border-indigo-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500 bg-indigo-50/30 dark:bg-indigo-950/30 hover:bg-indigo-50/80 dark:hover:bg-indigo-950/80 text-indigo-600 dark:text-indigo-300 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 group"
           >
             <Plus className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
             <span>+ Add another question</span>
           </button>
 
           {/* Footer Action Row matching screenshot */}
-          <div className="pt-4 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-slate-500 font-medium text-center sm:text-left">
+          <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium text-center sm:text-left">
               Questions are saved in your browser until you share.
             </p>
 
