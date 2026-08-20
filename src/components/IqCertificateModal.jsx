@@ -137,29 +137,112 @@ function createCertificateCanvas(candidateName, quizTitle, scorePercentage, corr
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
   ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.moveTo(70, 640);
-  ctx.lineTo(1130, 640);
+  ctx.moveTo(70, 610);
+  ctx.lineTo(1130, 610);
   ctx.stroke();
 
-  // IQ Classification Footer (Left)
+  // IQ Classification (Left)
   ctx.textAlign = 'left';
   ctx.fillStyle = '#94a3b8';
-  ctx.font = 'bold 12px sans-serif';
-  ctx.fillText('IQ CLASSIFICATION', 70, 680);
+  ctx.font = 'bold 11px sans-serif';
+  ctx.fillText('IQ CLASSIFICATION', 70, 645);
 
   ctx.fillStyle = '#fbbf24';
-  ctx.font = 'bold 22px sans-serif';
-  ctx.fillText(tierTitle, 70, 712);
+  ctx.font = 'bold 20px sans-serif';
+  ctx.fillText(tierTitle, 70, 672);
 
-  // Date of Issue Footer (Right)
-  ctx.textAlign = 'right';
   ctx.fillStyle = '#94a3b8';
-  ctx.font = 'bold 12px sans-serif';
-  ctx.fillText('DATE OF ISSUE', 1130, 680);
+  ctx.font = 'bold 11px sans-serif';
+  ctx.fillText('DATE OF ISSUE', 70, 715);
 
   ctx.fillStyle = '#f1f5f9';
-  ctx.font = '16px monospace';
-  ctx.fillText(formattedDate, 1130, 710);
+  ctx.font = '14px monospace';
+  ctx.fillText(formattedDate, 70, 735);
+
+  // OFFICIAL GOLDEN METALLIC SEAL (Center)
+  ctx.save();
+  ctx.translate(600, 675);
+
+  // Outer Gold Radiating Teeth / Starburst
+  ctx.fillStyle = '#f59e0b';
+  const teeth = 24;
+  ctx.beginPath();
+  for (let i = 0; i < teeth; i++) {
+    const angle = (i * Math.PI * 2) / teeth;
+    const rOut = 54;
+    const rIn = 48;
+    ctx.lineTo(Math.cos(angle) * rOut, Math.sin(angle) * rOut);
+    const midAngle = angle + (Math.PI / teeth);
+    ctx.lineTo(Math.cos(midAngle) * rIn, Math.sin(midAngle) * rIn);
+  }
+  ctx.closePath();
+  ctx.fill();
+
+  // Inner Gold Ring
+  const sealGrad = ctx.createLinearGradient(-40, -40, 40, 40);
+  sealGrad.addColorStop(0, '#fde047');
+  sealGrad.addColorStop(0.5, '#d97706');
+  sealGrad.addColorStop(1, '#78350f');
+  ctx.fillStyle = sealGrad;
+  ctx.beginPath();
+  ctx.arc(0, 0, 46, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Dark Inner Core
+  ctx.fillStyle = '#0f172a';
+  ctx.beginPath();
+  ctx.arc(0, 0, 38, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = '#fde047';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Seal Center Text & Icon
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#fde047';
+  ctx.font = '900 10px sans-serif';
+  ctx.fillText('VERIFIED', 0, -14);
+  ctx.font = 'bold 16px sans-serif';
+  ctx.fillText('★ OFFICIAL ★', 0, 4);
+  ctx.font = 'bold 9px sans-serif';
+  ctx.fillText('GENUINE SCORE', 0, 20);
+
+  ctx.restore();
+
+  // AUTHORIZED SIGNATURE OF MAHADEB MAITY (Right)
+  ctx.textAlign = 'right';
+
+  // Realistic Cursive Handwritten Signature
+  ctx.save();
+  ctx.translate(1130, 650);
+  ctx.rotate(-0.08); // Slight organic tilt
+
+  ctx.fillStyle = '#fde047';
+  ctx.font = 'bold italic 38px "Great Vibes", "Dancing Script", cursive, Georgia';
+  ctx.fillText('Mahadeb Maity', 0, 0);
+
+  // Handwritten flourish underline
+  ctx.strokeStyle = 'rgba(251, 191, 36, 0.7)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(-200, 8);
+  ctx.bezierCurveTo(-120, 18, -40, -2, 10, 10);
+  ctx.stroke();
+  ctx.restore();
+
+  // Signature Subtext
+  ctx.fillStyle = '#f1f5f9';
+  ctx.font = 'bold 13px sans-serif';
+  ctx.fillText('Mahadeb Maity', 1130, 695);
+
+  ctx.fillStyle = '#fbbf24';
+  ctx.font = 'bold 10px sans-serif';
+  ctx.fillText('DIRECTOR & HEAD OF ASSESSMENT', 1130, 712);
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '10px sans-serif';
+  ctx.fillText('IQ Test Global Institute', 1130, 728);
 
   return canvas;
 }
@@ -208,7 +291,6 @@ export default function IqCertificateModal({ isOpen, onClose, quizTitle, scorePe
             backgroundColor: '#090d16',
             logging: false,
             onclone: (clonedDoc) => {
-              // Strip backdrop-blur styles to prevent html2canvas crashes
               const clonedElement = clonedDoc.querySelector('[data-cert-box]');
               if (clonedElement) {
                 clonedElement.style.backdropFilter = 'none';
@@ -241,7 +323,6 @@ export default function IqCertificateModal({ isOpen, onClose, quizTitle, scorePe
           throw new Error('Failed to generate image blob');
         }
 
-        // Web Share API fallback for mobile devices if supported
         const file = new File([blob], fileName, { type: 'image/png' });
         if (navigator.canShare && navigator.canShare({ files: [file] }) && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
           try {
@@ -254,12 +335,10 @@ export default function IqCertificateModal({ isOpen, onClose, quizTitle, scorePe
             setIsGenerating(false);
             return;
           } catch (shareErr) {
-            // User cancelled share or fallback to direct download
             console.log('Native share skipped or cancelled, using direct file download', shareErr);
           }
         }
 
-        // Standard direct Blob object URL download
         triggerBlobDownload(blob, fileName);
         setDownloadSuccessMsg('Certificate downloaded successfully!');
         setIsGenerating(false);
@@ -364,21 +443,50 @@ export default function IqCertificateModal({ isOpen, onClose, quizTitle, scorePe
             </div>
           </div>
 
-          {/* Tier Badge & Date Footer */}
-          <div className="pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between gap-2">
-            <div className="text-left space-y-0.5 min-w-0">
-              <span className="text-[9px] sm:text-[10px] text-slate-400 block uppercase tracking-wider">IQ Classification</span>
-              <span className="text-xs sm:text-sm font-extrabold text-amber-400 block truncate">
-                {tier.title}
+          {/* Footer Section: Tier Badge + Official Golden Stamp Seal + Mahadeb Maity Signature */}
+          <div className="pt-3 sm:pt-4 border-t border-white/10 flex items-end justify-between gap-2">
+            
+            {/* Left: IQ Classification & Date */}
+            <div className="text-left space-y-2 min-w-0">
+              <div>
+                <span className="text-[9px] sm:text-[10px] text-slate-400 block uppercase tracking-wider">IQ Classification</span>
+                <span className="text-xs sm:text-sm font-extrabold text-amber-400 block truncate">
+                  {tier.title}
+                </span>
+              </div>
+              <div>
+                <span className="text-[9px] sm:text-[10px] text-slate-400 block uppercase tracking-wider">Date of Issue</span>
+                <span className="text-[11px] sm:text-xs font-mono text-slate-200 block">
+                  {formattedDate}
+                </span>
+              </div>
+            </div>
+
+            {/* Center: Official Metallic Gold Seal Badge */}
+            <div className="hidden xs:flex flex-col items-center shrink-0">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-600 p-0.5 shadow-lg shadow-amber-500/20 relative flex items-center justify-center border-2 border-amber-300/80">
+                <div className="w-full h-full rounded-full bg-slate-950 flex flex-col items-center justify-center text-center p-1 border border-amber-400/40">
+                  <span className="text-[7px] font-black text-amber-400 uppercase tracking-widest">VERIFIED</span>
+                  <span className="text-[10px] font-bold text-amber-300 my-0.5">★ OFFICIAL ★</span>
+                  <span className="text-[6px] font-bold text-slate-300 uppercase tracking-tighter">GENUINE SCORE</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Realistic Cursive Signature of Mahadeb Maity */}
+            <div className="text-right space-y-0.5 shrink-0">
+              <span className="font-signature text-2xl sm:text-3xl text-amber-300 block -rotate-3 select-none tracking-wide drop-shadow-sm font-normal">
+                Mahadeb Maity
+              </span>
+              <div className="w-24 sm:w-32 h-0.5 bg-gradient-to-r from-transparent via-amber-400/60 to-amber-300 ml-auto -mt-1 mb-1" />
+              <span className="text-[10px] sm:text-xs font-bold text-slate-200 block uppercase">
+                Mahadeb Maity
+              </span>
+              <span className="text-[8px] sm:text-[9px] font-semibold text-amber-400/90 block uppercase tracking-wider">
+                Director & Head of Assessment
               </span>
             </div>
 
-            <div className="text-right space-y-0.5 shrink-0">
-              <span className="text-[9px] sm:text-[10px] text-slate-400 block uppercase tracking-wider">Date of Issue</span>
-              <span className="text-[11px] sm:text-xs font-mono text-slate-200 block">
-                {formattedDate}
-              </span>
-            </div>
           </div>
         </div>
 
