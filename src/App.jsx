@@ -129,8 +129,8 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="py-6 text-center text-xs text-slate-400 border-t border-slate-200/60 mt-auto">
-        <p>© IQ Test Quiz Builder • Built with React & Tailwind CSS</p>
+      <footer className="py-6 text-center text-xs text-slate-400 dark:text-slate-500 border-t border-slate-200/60 dark:border-slate-800 mt-auto">
+        <p>© IQ Test Quiz Builder • Created by <span className="font-semibold text-slate-600 dark:text-slate-300">Mahadeb Maity</span> (Freelance Developer)</p>
       </footer>
     </div>
   );

@@ -155,9 +155,9 @@ export default function QuizBuilder({ onQuizCreated }) {
             <button
               type="button"
               onClick={() => setIsAiWizardOpen(true)}
-              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 text-white font-bold text-xs sm:text-sm button-glow hover:opacity-95 transition-all flex items-center justify-center gap-2 shrink-0 border border-purple-400/30"
+              className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 text-white font-bold text-xs sm:text-sm button-glow hover:opacity-95 transition-all flex items-center justify-center gap-2 shrink-0 border border-purple-400/30"
             >
-              <Wand2 className="w-4 h-4 text-amber-300 fill-amber-300" />
+              <Wand2 className="w-4 h-4 text-amber-300 fill-amber-300 shrink-0" />
               <span>Generate Quiz with AI</span>
             </button>
           </div>
@@ -244,6 +244,7 @@ export default function QuizBuilder({ onQuizCreated }) {
                 question={q}
                 index={idx}
                 totalQuestions={questions.length}
+                allQuestions={questions}
                 onUpdateQuestion={handleUpdateQuestion}
                 onDeleteQuestion={handleDeleteQuestion}
                 onMoveQuestion={handleMoveQuestion}

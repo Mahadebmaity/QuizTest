@@ -77,36 +77,36 @@ export default function QuizResults({ quiz, userAnswers, onRetake, onCreateNew }
         </div>
 
         {/* Action Buttons including Certificate Generator */}
-        <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+        <div className="pt-4 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2.5 sm:gap-3 w-full">
           <button
             onClick={() => setIsCertOpen(true)}
-            className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 text-white font-bold text-sm shadow-md shadow-amber-200 hover:opacity-95 transition-all flex items-center gap-2"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 text-white font-bold text-xs sm:text-sm shadow-md shadow-amber-200 hover:opacity-95 transition-all flex items-center justify-center gap-2"
           >
-            <Award className="w-4 h-4 text-amber-100" />
+            <Award className="w-4 h-4 text-amber-100 shrink-0" />
             <span>Download Official Certificate</span>
           </button>
 
           <button
             onClick={handleShareResult}
-            className="px-6 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold text-sm shadow-md shadow-indigo-200 hover:bg-indigo-700 transition-all flex items-center gap-2"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-indigo-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-indigo-200 hover:bg-indigo-700 transition-all flex items-center justify-center gap-2"
           >
-            <Share2 className="w-4 h-4" />
+            <Share2 className="w-4 h-4 shrink-0" />
             <span>Share My Score</span>
           </button>
 
           <button
             onClick={onRetake}
-            className="px-5 py-3.5 rounded-2xl bg-slate-100 text-slate-700 font-semibold text-sm hover:bg-slate-200 transition-colors flex items-center gap-2"
+            className="w-full sm:w-auto px-5 py-3 sm:py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-2"
           >
-            <RefreshCw className="w-4 h-4" />
+            <RefreshCw className="w-4 h-4 shrink-0" />
             <span>Try Again</span>
           </button>
 
           <button
             onClick={onCreateNew}
-            className="px-5 py-3.5 rounded-2xl border border-indigo-200 text-indigo-700 font-semibold text-sm hover:bg-indigo-50 transition-colors flex items-center gap-2"
+            className="w-full sm:w-auto px-5 py-3 sm:py-3.5 rounded-2xl border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-semibold text-xs sm:text-sm hover:bg-indigo-50 dark:hover:bg-indigo-950 transition-colors flex items-center justify-center gap-2"
           >
-            <PlusCircle className="w-4 h-4" />
+            <PlusCircle className="w-4 h-4 shrink-0" />
             <span>Build Quiz</span>
           </button>
         </div>

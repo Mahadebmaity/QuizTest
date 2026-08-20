@@ -177,7 +177,7 @@ export default function QuizPlayer({ quiz, onCompleteQuiz, onBackToBuilder }) {
                   }`}>
                     {label}
                   </span>
-                  <span className={`text-xs sm:text-base font-semibold transition-colors truncate ${
+                  <span className={`text-xs sm:text-base font-semibold transition-colors break-words ${
                     isSelected ? 'text-indigo-950 font-bold' : 'text-slate-800'
                   }`}>
                     {opt.text}

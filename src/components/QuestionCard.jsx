@@ -15,6 +15,7 @@ export default function QuestionCard({
   question,
   index,
   totalQuestions,
+  allQuestions = [],
   onUpdateQuestion,
   onDeleteQuestion,
   onMoveQuestion
@@ -64,11 +65,11 @@ export default function QuestionCard({
     return () => clearTimeout(timeoutId);
   }, [index]);
 
-  // Update AI suggestions when typing
+  // Update AI suggestions when typing, excluding duplicate questions
   useEffect(() => {
-    const list = getAiQuestionSuggestions(question.text);
+    const list = getAiQuestionSuggestions(question.text, allQuestions);
     setAiSuggestions(list);
-  }, [question.text]);
+  }, [question.text, allQuestions]);
 
   // Close AI dropdown on click outside
   useEffect(() => {
@@ -119,19 +120,27 @@ export default function QuestionCard({
     setShowAiDropdown(false);
   };
 
-  // Random AI Quick Prompt
+  // Random AI Quick Prompt (Guaranteed non-duplicate question)
   const handleRandomAiPrompt = () => {
-    const randomIndex = Math.floor(Math.random() * AI_SUGGESTION_DATABASE.length);
-    applyAiSuggestion(AI_SUGGESTION_DATABASE[randomIndex]);
+    const usedTexts = allQuestions.map(q => (q.text || '').trim().toLowerCase()).filter(Boolean);
+
+    // Filter out questions that are already used in current quiz
+    const unusedPool = AI_SUGGESTION_DATABASE.filter(item => 
+      !usedTexts.includes(item.question.trim().toLowerCase())
+    );
+
+    const pool = unusedPool.length > 0 ? unusedPool : AI_SUGGESTION_DATABASE;
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    applyAiSuggestion(pool[randomIndex]);
   };
 
   return (
     <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-indigo-100 shadow-sm relative space-y-4 sm:space-y-6 transition-all hover:border-indigo-200 min-w-0">
       
       {/* Top Header Row with Question Badge, AI Magic Button & Actions */}
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wider text-indigo-600 bg-indigo-50 uppercase">
+      <div className="flex flex-wrap items-center justify-between gap-2 min-w-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+          <span className="px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wider text-indigo-600 bg-indigo-50 uppercase shrink-0">
             QUESTION {index + 1}
           </span>
 
@@ -139,10 +148,10 @@ export default function QuestionCard({
           <button
             type="button"
             onClick={handleRandomAiPrompt}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200/80 transition-colors"
+            className="flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200/80 transition-colors shrink-0"
             title="Generate an authentic trivia question with options"
           >
-            <Sparkles className="w-3 h-3 text-purple-600" />
+            <Sparkles className="w-3 h-3 text-purple-600 shrink-0" />
             <span>AI Auto-Fill</span>
           </button>
         </div>
